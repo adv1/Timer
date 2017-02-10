@@ -1,0 +1,65 @@
+
+body{
+	text-align: center;
+	margin-top: 200px;
+}
+
+.container{
+	text-align: center;
+	align-content: center;
+}
+
+h1{
+	font-size: 4em;
+	text-align: center;
+}
+
+h3{
+	text-align: center;
+	color: gray;
+	margin-left: 220px;
+}
+
+.timer-controls {
+	margin-bottom: 20px;
+}
+
+.timer-controls: last-child {
+	margin-left: 50px;
+}
+
+.controls-results {
+	background-color: lightgray;
+	width: 400px;
+	text-align: center;
+	margin: 0 auto;
+	border: 1px solid  gray; 
+}
+
+.resLine {
+	border-bottom: 2px solid #C0C0C0;
+}
+
+.curLaps {
+	  color: gray;
+	  margin: 2px 100px 5px 0;
+}
+
+.button {
+	width: 50px;
+	height: 50px;
+	border-radius: 99px;
+	border: 2px solid white;
+	display: inline-block;
+	text-align: center;
+	line-height: 50px;
+	align-content: center;
+	background-color: white;
+}
+
+#startBtn{
+	margin-left: 60px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: green;
+}
