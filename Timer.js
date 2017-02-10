@@ -38,7 +38,6 @@ Timer.prototype.stop = function() {
         if (this.timerRunning) {
            this.timerRunning = false;
            this.clearTimer();
-           console.log(Timer)
         } 
 };
 
@@ -52,8 +51,6 @@ Timer.prototype.reset = function () {
 Timer.prototype.clearTimer = function() {
         clearInterval(this._timerIntervalId);
 };
-
-
 
 Timer.prototype.getDisplayedTime = function(timerElement, interval) {
         return setInterval(function() {

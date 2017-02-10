@@ -7,11 +7,13 @@ var labelTimeLap = document.getElementById('timeLap'),
     lapCurrentTime = 0;
 
 
-var mainTimer = new Timer();
+var mainTimer = new Timer(),
+	lapTimer = new Timer();
 	
 
 function startTimer() {
 	 	mainTimer.start();
+	 	lapTimer.start();
 		startButton.innerHTML = 'Стоп';
     	startButton.style.color = 'red';
     	resetButton.innerHTML = 'Круг';
@@ -19,6 +21,7 @@ function startTimer() {
 
 function stopTimer() {
 		mainTimer.stop();
+		lapTimer.stop();
 		startButton.style.color = 'green';
     	startButton.innerHTML = 'Старт';
     	resetButton.innerHTML = 'Сброс';
@@ -28,7 +31,7 @@ function saveLap() {
 		if (this.timerRunning) {
 			currentLapNumber++;
         	lapResults.innerHTML += '<div class="resLine">' + '<span class="curLaps">' + "Круг" + " " + currentLapNumber + " " + '</span>'  + '<span class="curTime">' + this.prepareDisplayedTime(lapCurrentTime) + " " + '</span>' + '</div>';
-        	lapCurrentTime = 0;
+        	lapTimer.reset();
 		}	
 };
 
@@ -39,7 +42,7 @@ function resetTimer() {
         resetButton.innerHTML = 'Круг';
         lapResults.innerHTML = '';
         		currentLapNumber = 0;
-                lapCurrentTime = 0;
+        lapTimer.reset();
 
 };
 
