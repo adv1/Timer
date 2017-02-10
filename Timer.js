@@ -1,11 +1,9 @@
 function Timer() {
     this.timerRunning = false;
     this._timerCurrentTime = 0;
-    this._mainTimerIntervalId;
-  
+};
 
-    this.prepareDisplayedTime = function(time) {
-        this.time = time;
+    Timer.prototype._prepareDisplayedTime = function prepareDisplayedTime(time) {
         var milliSeconds = time % 1000,
             seconds = Math.floor((time / 1000) % 60) ,
             minutes = Math.floor((time / 1000 / 60) % 60);
@@ -26,14 +24,13 @@ function Timer() {
                 milliSeconds = milliSeconds / 10;
             }
         return minutes + ':' + seconds + ',' + milliSeconds;
-    }
-};
+    };
 
 
 Timer.prototype.start = function() {
         if (!this.timerRunning) {
             this.timerRunning = true;
-            this._mainTimerIntervalId = this.getDisplayedTime(labelTime, 10);
+            this._timerIntervalId = this.getDisplayedTime(labelTime, 100);
         } 
 };
 
@@ -41,6 +38,7 @@ Timer.prototype.stop = function() {
         if (this.timerRunning) {
            this.timerRunning = false;
            this.clearTimer();
+           console.log(Timer)
         } 
 };
 
@@ -52,7 +50,7 @@ Timer.prototype.reset = function () {
 };
 
 Timer.prototype.clearTimer = function() {
-        clearInterval(this._mainTimerIntervalId);
+        clearInterval(this._timerIntervalId);
 };
 
 
@@ -60,8 +58,7 @@ Timer.prototype.clearTimer = function() {
 Timer.prototype.getDisplayedTime = function(timerElement, interval) {
         return setInterval(function() {
             this._timerCurrentTime += interval;
-            this.timerElement = timerElement;
-
+            
             timerElement.innerHTML = this.prepareDisplayedTime(this._timerCurrentTime);
         }, interval)
 };

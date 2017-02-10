@@ -9,7 +9,6 @@ var labelTimeLap = document.getElementById('timeLap'),
 
 var mainTimer = new Timer();
 	
-	
 
 function startTimer() {
 	 	mainTimer.start();
