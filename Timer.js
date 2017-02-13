@@ -3,59 +3,53 @@ function Timer() {
     this._timerCurrentTime = 0;
 };
 
-    Timer.prototype._prepareDisplayedTime = function prepareDisplayedTime(time) {
-        var milliSeconds = time % 1000,
-            seconds = Math.floor((time / 1000) % 60) ,
-            minutes = Math.floor((time / 1000 / 60) % 60);
+Timer.prototype._prepareDisplayedTime = function(time) {
+    var milliSeconds = time % 1000,
+        seconds = Math.floor((time / 1000) % 60) ,
+        minutes = Math.floor((time / 1000 / 60) % 60);
 
-            if (minutes < 10) {
-                minutes = '0' + minutes;
+        if (minutes < 10) {
+            minutes = '0' + minutes;
+        }
+        if (seconds >= 60) {
+            seconds = seconds % 60;
+        }
+        if (seconds < 10) {
+            seconds = '0' + seconds;
             }
-            if (seconds >= 60) {
-                seconds = seconds % 60;
-            }
-            if (seconds < 10) {
-                seconds = '0' + seconds;
-            }
-            if (milliSeconds < 10) {
-                milliSeconds = '0' + milliSeconds;
-            }
-            if (milliSeconds > 99 ) {
-                milliSeconds = milliSeconds / 10;
-            }
-        return minutes + ':' + seconds + ',' + milliSeconds;
-    };
+        if (milliSeconds < 10) {
+             milliSeconds = '0' + milliSeconds;
+        }
+        if (milliSeconds > 99 ) {
+           milliSeconds = milliSeconds / 10;
+        }
+    return minutes + ':' + seconds + ',' + milliSeconds;
+};
 
 
 Timer.prototype.start = function() {
-        if (!this.timerRunning) {
-            this.timerRunning = true;
-            this._timerIntervalId = this.getDisplayedTime(labelTime, 100);
-        } 
+    this.timerRunning = true;
 };
 
 Timer.prototype.stop = function() {
-        if (this.timerRunning) {
-           this.timerRunning = false;
-           this.clearTimer();
-        } 
+    this.timerRunning = false;
+    this.clearTimer();
 };
 
 Timer.prototype.reset = function () {
-        if (!this.timerRunning) {
-            this._timerCurrentTime = 0;
-            this.clearTimer();
-        }
+    this._timerCurrentTime = 0;
+    this.clearTimer();
 };
 
-Timer.prototype.clearTimer = function() {
-        clearInterval(this._timerIntervalId);
+Timer.prototype.clearTimer = function(timerElement) {
+    clearInterval(timerElement);
 };
 
 Timer.prototype.getDisplayedTime = function(timerElement, interval) {
-        return setInterval(function() {
-            this._timerCurrentTime += interval;
+    var self = this;
+    return setInterval(function() {
+        self._timerCurrentTime += interval;
             
-            timerElement.innerHTML = this.prepareDisplayedTime(this._timerCurrentTime);
-        }, interval)
+        timerElement.innerHTML = self._prepareDisplayedTime(self._timerCurrentTime);
+    }, interval)
 };
